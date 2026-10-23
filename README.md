@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-Try the application here: https://financial-report-by-soham.streamlit.app/
+#Try the application here: https://financial-report-by-soham.streamlit.app/
 
 A Retrieval-Augmented Generation (RAG) application that lets users upload PDF documents and ask questions about their contents.
 
