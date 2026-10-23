@@ -11,9 +11,9 @@ with st.sidebar:
     st.header("Settings")
     model = st.selectbox("Model", ["gpt-4o-mini", "gpt-4o", "gemini/gemini-3.8-flash"])
     if model.startswith("gemini/"):
-        api_key = st.text_input("Gemini API Key", type="password", value=os.environ.get("GEMINI_API_KEY", ""))
-        if api_key:
-            os.environ["GEMINI_API_KEY"] = api_key
+        api_key = st.secrets.get("GEMINI_API_KEY", "")
+    if api_key:
+        os.environ["GEMINI_API_KEY"] = api_key
     else:
         api_key = st.text_input("OpenAI API Key", type="password", value=os.environ.get("OPENAI_API_KEY", ""))
         if api_key:
