@@ -7,25 +7,22 @@ st.set_page_config(page_title="Financial Report Q&A", page_icon="📊", layout="
 st.title("📊 Financial Report Q&A Bot")
 st.caption("Upload any annual report or earnings PDF and ask questions about it")
 
-
-
 with st.sidebar:
     st.header("Settings")
-    model = st.selectbox("Model", ["gemini/gemini-3.8-flash", "gpt-4o-mini", "gpt-4o"])
+    model = st.selectbox("Model", ["gpt-4o-mini", "gpt-4o", "gemini/gemini-3.8-flash"])
+
     if model.startswith("gemini/"):
-        api_key = st.text_input("Gemini API Key", type="password")
+        api_key = st.text_input("Gemini API Key", type="password", value=os.environ.get("GEMINI_API_KEY", ""))
         if api_key:
             os.environ["GEMINI_API_KEY"] = api_key
     else:
-        api_key = st.text_input("OpenAI API Key", type="password")
+        api_key = st.text_input("OpenAI API Key", type="password", value=os.environ.get("OPENAI_API_KEY", ""))
         if api_key:
             os.environ["OPENAI_API_KEY"] = api_key
+
     st.divider()
     st.markdown("**How it works**")
     st.markdown("1. Upload PDF\n2. Split into chunks\n3. Store as vectors\n4. Question finds relevant chunks\n5. LLM answers from chunks only")
-
-
-
 
 if "vectorstore"  not in st.session_state: st.session_state.vectorstore  = None
 if "chat_history" not in st.session_state: st.session_state.chat_history = []
