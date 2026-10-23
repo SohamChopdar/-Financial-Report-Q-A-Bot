@@ -9,7 +9,7 @@ st.caption("Upload any annual report or earnings PDF and ask questions about it"
 
 with st.sidebar:
     st.header("Settings")
-    model = st.selectbox("Model", ["gpt-4o-mini", "gpt-4o", "gemini/gemini-3.8-flash"])
+    model = st.selectbox("Model", ["gpt-4o-mini", "gpt-4o", "gemini/gemini-3.6-flash"])
 
     if model.startswith("gemini/"):
         api_key = st.text_input("Gemini API Key", type="password", value=os.environ.get("GEMINI_API_KEY", ""))
